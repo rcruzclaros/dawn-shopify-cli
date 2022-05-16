@@ -1,0 +1,38 @@
+<div class="slider hero-section">
+    {% for block in section.blocks %}
+    <div class="slide">
+        <a href="{{ block.settings.link | default:"#" }}">
+            <img src="{{ block.settings.slide_img | img_url: '1800x' }}" alt="">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% schema %}
+{
+    "settings":[
+    ],
+    "blocks":[
+        {
+            "name": "slide",
+            "type": "slide",
+            "settings": [
+                {
+                    "type":"image_picker",
+                    "id": "slide_img",
+                    "label": "Select Image"
+                },
+                {
+                    "type":"url",
+                    "id": "link",
+                    "label": "Select Url"
+                }
+            ]
+        }
+    ],
+   "presets": [
+       {
+           "name": "Slideshow"
+       }
+   ]
+}
+{% endschema %}

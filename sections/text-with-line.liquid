@@ -1,0 +1,51 @@
+{% style %}
+.text-with-line{
+    background-color:{{ section.settings.background_color }};
+}
+{% endstyle %}
+<section class="text-with-line {{ section.settings.custom_class_section }}">
+    <div class="container">
+      <div class="content">
+        <h2>{{ section.settings.title }}</h2>
+        <div class="line"></div>
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </section>
+  
+  {% schema %}
+    {
+      "name": "Text with line",
+      "class": "section-text-with-line",
+      "settings": 
+        [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Paragraph content",
+            "default": "<p>Your text here</p>"
+          },
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background color"
+          },
+          {
+            "type": "text",
+            "id": "custom_class_section",
+            "label": "Custom Class Section"
+          }
+        ],
+      "presets": [
+          {
+            "name": "Text with line"
+          }
+        ]
+    }
+  {% endschema %}

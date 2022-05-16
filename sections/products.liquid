@@ -1,0 +1,43 @@
+<section class="section-products">
+    <div class="container">
+        <div class="content">
+            {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+            {% endif; %}
+            <ul class="rslides slider-products">
+                {% for product in collections['all'].products %}
+                <li class="slideshow-item">
+                    <div class="box-img">
+                        <a href="{{ product.url }}"><img
+                            src="{{ product.featured_image | img_url: 'medium' | format: 'jpg' }}"
+                            alt="{{ block.settings.slide_heading }}"></a>
+                    </div>
+                    <div class="box-details">
+                        <h4>{{ product.title }}</h4>
+                        <h4>{{ product.price | money | remove: '.00' }}</h4>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div><!-- #slideshow-container -->
+    </div>
+</section><!-- #slideshow -->
+{% schema %}
+{
+    "name": "Products Slideshow",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Add Tilte to show on slider"
+        }
+        ],
+    "presets": [
+        {
+            "name": "Products Slideshow",
+            "category": "collections"
+        }
+    ]
+}
+{% endschema %}

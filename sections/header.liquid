@@ -1,0 +1,42 @@
+<header class="section-header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{ routes.root_url }}"><img src="{{ section.settings.logo | img_url: 'small' }}" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    {% assign navbar = section.settings.menu %}
+                    {% for link in navbar.links %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+              </div>
+              {%- include "go-cart-button" -%}
+            </div>
+        </nav>
+    </div>
+</header>
+
+{% schema %}
+{
+    "name":"Header",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Select Logo"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Select Menu",
+            "default": "main-menu"
+        }
+    ]
+}
+{% endschema %}

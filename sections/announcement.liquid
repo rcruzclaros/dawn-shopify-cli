@@ -1,0 +1,32 @@
+{%- comment -%}
+Here markup html
+{%- endcomment -%}
+{% if section.settings.show_announcement == true %}
+<section class="section-announcement">
+    <div class="container">
+        <div class="content">
+                <span>{{ section.settings.msg }}</span>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Announcement",
+    "settings":[
+        {
+            "type": "checkbox",
+            "id": "show_announcement",
+            "label": "Show announcement",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "msg",
+            "label": "Announcement Bar",
+            "default": "Sell is live...."
+        }
+    ]
+}
+{% endschema %}

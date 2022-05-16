@@ -1,0 +1,130 @@
+<section class="section-serving {{ section.settings.custom_class_section }}">
+    <div class="container">
+      {% if section.settings.title != black %}
+          <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+      <div class="row-grid">
+        {% for block in section.blocks %}
+          <div class="col col-{{ block.settings.layout }} {{ block.settings.custom_class_box }}">
+            {% if block.settings.image-box != blank %}
+            <img src="{{ block.settings.image-box | img_url: 'large' }}" alt="{{ block.settings.image.alt }}">
+            {% endif %}
+            <h4>{{ block.settings.title-box }}</h4>
+            {{ block.settings.text-box }}
+            {% if block.settings.buttom-text != blank or block.settings.buttom-url != blank %}
+            <div class="btn-blocks">
+              <a class="btn-orange" href="{{ block.settings.buttom-url }}">{{ block.settings.buttom-text }}</a>
+            </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      {% if section.settings.text != black %}
+          {{ section.settings.text }}
+      {% endif %}
+    </div>
+  </section>
+  {% schema %}
+    {
+      "name": "Blocks landing",
+      "class": "section-each-serving",
+      "settings": 
+        [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Paragraph Down",
+            "default": "<p>Your text here</p>"
+          },
+          {
+            "type": "text",
+            "id": "custom_class_section",
+            "label": "Custom Class Section"
+          }
+        ],
+      "blocks": [
+          {
+              "type": "Box",
+                "name": "Add Box",
+              "limit": 7,
+                "settings": [
+                  {
+                        "type": "image_picker",
+                      "id": "image-box",
+                         "label": "Image Box"
+                  },
+                  {
+                      "type": "text",
+                      "id": "title-box",
+                      "label": "Title Box",
+                      "default": "Title Box"
+                  },
+                  {
+                    "type": "richtext",
+                    "id": "text-box",
+                    "label": "Paragraph box",
+                    "default": "<p>Your text here</p>"
+                  },
+                  {
+                    "type": "select",
+                    "id": "layout",
+                    "label": "Container Width",
+                    "default": "2",
+                    "options": [
+                      {
+                        "value": "4",
+                        "label": "25%"
+                      },
+                      {
+                        "value": "3",
+                        "label": "33%"
+                      },
+                      {
+                        "value": "2",
+                        "label": "50%"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "id": "buttom-text",
+                    "label": "Button Text"
+                  },
+                  {
+                    "type": "url",
+                    "id": "buttom-url",
+                    "label": "Button Url"
+                  },
+                  {
+                    "type": "text",
+                    "id": "custom_class_box",
+                    "label": "Custom classes"
+                  }
+              ] 
+          }
+       ],
+      "presets": [
+          {
+            "name": "Blocks landing",
+            "blocks": [
+              {
+                  "type": "Box"
+              }
+            ]
+          }
+        ]
+    }
+  {% endschema %}
+  
+  {% stylesheet %}
+  {% endstylesheet %}
+  
+  {% javascript %}
+  {% endjavascript %}
+  
